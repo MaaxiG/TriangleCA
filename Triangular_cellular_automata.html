@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Triangular cellular automata</title>
+	   <meta charset="UTF-8">
+     <script src="TCA.js"></script>
+     <style>
+        body{
+          width: 100%;
+          height: 100%;
+          margin: 0;
+          padding: 0;
+          background-color: #fcf5e3;
+        }
+
+        #menu{
+          margin: 0;
+          width: 100%;
+          height: 100%;
+          padding: inherit;
+        }
+		
+		input[type='number']{
+			width: 50px;
+		}
+
+        #menuContent{
+          padding: 5px;
+          margin: inherit;
+        }
+
+
+        #simMenu{
+          display: none;
+          position: fixed;
+          cursor: pointer;
+          padding: 5px;
+          background-color: grey;
+          opacity: 0.7;
+        }
+     </style>
+   </head>
+
+	<body onload="initApp();">
+
+    <div id="menu">
+      <h1>Triangular cellular automata - Projet AlgoNum - Maxime Grava - 03.07.2018</h1>
+      <div id="menuContent" class="disable-select">
+        Number of lines : <input type="number" id="sizeInputY" value="30" autocomplete="off">
+        <p>Number of triangles in one line : <input type="number" id="sizeInputX" value="30" autocomplete="off"></p>
+        <p>Time between each generation of the automata : <input type="number" id="timeIntervalSim" value="100" autocomplete="off"> ms</p>
+        <p><div id="ruleSelect">Create your own rule : </div></p>
+		<p>OR</p>
+		<p><button id="randomizeRuleBtn" onclick="randomizeRule();">Randomize rule</button>
+		<p>OR</p>
+		<p>Choose a preset rule: <select id="selectRule" autocomplete="off"><option value="1" selected>1</option>
+													   <option value="2">2</option>
+													   <option value="3">3</option>
+													   <option value="4">4</option>
+													   <option value="5">5</option></select><button id="defaultRule" onclick="inputDefaultRule();">Input preset rule</button></p>
+		<p>All default rules were tested with one cell at 1 near the middle. 0 is represented as white, 1 as lightgrey and 2 as grey. Currently, the borders of the canvas are connected, 
+		like a doughnut, so if you go too far left, it will come back in the right border.</p>
+        <p><button id="showCanvas" onclick="changeView();">Show automata</button></p>
+		<p>If you want to save your preferred rules, you can output them as a string : <button onclick="drawRuleAsString();">output rule</button></p>
+		<div id="ruleOutput"></div>
+		<p>If you want to use one of your rules, input it's string here : <input type="text" id="ruleInputString" autocomplete="off"><button onclick="readStringAsRule();">read rule</button></p>
+		
+      </div>
+    </div>
+
+	<div id="simMenu" class="disable-select">
+		<button id="openMenuIcon" onclick="changeView();">Back to menu</button>
+		<button id="start" onclick="startSim();">Start automata</button>
+		<button id="stop" onclick="stopSim();" >Stop automata</button>
+		<button id="clear" onclick="initCanvas();">Clear canvas</button>
+	</div>
+
+
+    <canvas id="canva" onclick="handleClick(event)" style="display: none;"></canvas>
+</html>
