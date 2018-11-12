@@ -1,0 +1,2 @@
+# TriangleCA
+Triangular cellular automata
